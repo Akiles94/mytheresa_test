@@ -3,7 +3,6 @@ package datasetimpl
 import (
 	"encoding/json"
 	"io/ioutil"
-	"os"
 
 	"github.com/Akiles94/mytheresa-test/domain/dto"
 	"github.com/Akiles94/mytheresa-test/domain/models"
@@ -15,7 +14,7 @@ func (d *DatasetRepo) GetProducts(params dto.QueryParams) (*[]models.Product, er
 	response := []models.Product{}
 
 	//Getting current working dir
-	pwd, _ := os.Getwd()
+	pwd := "/go/src/assets/"
 	//Reading file
 	file, err := ioutil.ReadFile(pwd + d.filePath)
 	if err != nil {

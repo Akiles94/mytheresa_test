@@ -1,0 +1,16 @@
+version: '3'
+services:        
+  mytheresa_go:
+    container_name: mytheresa_go
+    build:
+      context: ./golang
+      dockerfile: ./deploy/Dockerfile
+    command: serve
+    ports:
+      - '4000:4000'
+    env_file: ./golang/.env   
+    networks:
+      - main    
+networks:
+  main:
+    driver: bridge

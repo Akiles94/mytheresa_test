@@ -3,7 +3,6 @@ package datasetimpl
 import (
 	"encoding/json"
 	"io/ioutil"
-	"os"
 
 	"github.com/Akiles94/mytheresa-test/domain/models"
 	log "github.com/sirupsen/logrus"
@@ -17,7 +16,7 @@ type DatasetRepo struct {
 func (d *DatasetRepo) Init(filepath string) error {
 	d.filePath = filepath
 	//Getting current working dir
-	pwd, _ := os.Getwd()
+	pwd := "/go/src/assets/"
 	//Reading file
 	file, err := ioutil.ReadFile(pwd + filepath)
 	if err != nil {
