@@ -39,6 +39,14 @@ The services are conformed by a REST API in Golang and other implementation with
     docker-compose up
 ```
 - The port for golang implementation is 4000 and for Symfony 8000
+- The endpoint for Golang implementation is:
+```sh
+    localhost:4000/v1/products
+```
+- The endpoint for Symfony implementation is:
+```sh
+    localhost:8000/products/list
+```
 - For run tests you must to run locally for Golang implementation you can run:
 ```sh
     go test -v ./...
