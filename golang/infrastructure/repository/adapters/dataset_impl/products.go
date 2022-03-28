@@ -7,17 +7,15 @@ import (
 
 	"github.com/Akiles94/mytheresa-test/domain/dto"
 	"github.com/Akiles94/mytheresa-test/domain/models"
-	"github.com/Akiles94/mytheresa-test/infrastructure/config"
 	"github.com/Akiles94/mytheresa-test/infrastructure/httputils"
 	log "github.com/sirupsen/logrus"
 )
 
 func (d *DatasetRepo) GetProducts(params dto.QueryParams) (*[]models.Product, error) {
 	response := []models.Product{}
-	config := config.Init()
-	var pwd string = "dev"
+	var pwd string = ""
 	//Getting current working dir
-	if config.Env == "dev" {
+	if d.env == "dev" {
 		pwd, _ = os.Getwd()
 	} else {
 		pwd = "/go/src"

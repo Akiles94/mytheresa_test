@@ -11,11 +11,12 @@ import (
 
 type DatasetRepo struct {
 	filePath string
-	//dataset  *[]models.Product
+	env      string
 }
 
 func (d *DatasetRepo) Init(filepath string, env string) error {
 	d.filePath = filepath
+	d.env = env
 	var pwd string = "dev"
 	//Getting current working dir
 	if env == "dev" {
