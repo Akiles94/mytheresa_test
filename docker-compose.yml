@@ -19,7 +19,6 @@ services:
     command: symfony server:start
     ports:
       - '8000:8000'
-    # env_file: ./golang/.env   
     networks:
       - main   
 networks:
