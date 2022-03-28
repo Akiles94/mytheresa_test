@@ -4,8 +4,8 @@ namespace App\Infrastructure\Repository\Adapters;
 
 use App\Infrastructure\Repository\Ports\IRepository;
 use App\Domain\Dto\QueryParams;
-use HttpUtils\HttpUtils;
-use Models\Product;
+use App\Infrastructure\HttpUtils\ProductsFilters;
+use App\Domain\Models\Product;
 
 class FileStoreRepo implements IRepository{
     
@@ -33,7 +33,7 @@ class FileStoreRepo implements IRepository{
             array_push($products, $product);
         }
 
-        $products = HttpUtils::GetProductsFiltered($products, $params);
+        $products = ProductsFilters::GetProductsFiltered($products, $params);
 
         return $products;
     }

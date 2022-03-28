@@ -3,18 +3,25 @@ package datasetimpl
 import (
 	"encoding/json"
 	"io/ioutil"
+	"os"
 
 	"github.com/Akiles94/mytheresa-test/domain/dto"
 	"github.com/Akiles94/mytheresa-test/domain/models"
+	"github.com/Akiles94/mytheresa-test/infrastructure/config"
 	"github.com/Akiles94/mytheresa-test/infrastructure/httputils"
 	log "github.com/sirupsen/logrus"
 )
 
 func (d *DatasetRepo) GetProducts(params dto.QueryParams) (*[]models.Product, error) {
 	response := []models.Product{}
-
+	config := config.Init()
+	var pwd string = "dev"
 	//Getting current working dir
-	pwd := "/go/src/assets/"
+	if config.Env == "dev" {
+		pwd, _ = os.Getwd()
+	} else {
+		pwd = "/go/src"
+	}
 	//Reading file
 	file, err := ioutil.ReadFile(pwd + d.filePath)
 	if err != nil {

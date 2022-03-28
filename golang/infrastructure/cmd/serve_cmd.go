@@ -30,7 +30,7 @@ func initServer() {
 
 	//Init main repository
 	repo := &datasetimpl.DatasetRepo{}
-	repo.Init("products.json")
+	repo.Init("/infrastructure/assets/products.json", config.Env)
 
 	productsImpl := &adapters.ProductsImpl{
 		Repo: repo,

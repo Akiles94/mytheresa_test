@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Infrastructure\Http;
 
 use App\Domain\Ports\IProducts;
 use Exception;
-use HttpUtils\HttpUtils;
+use App\Infrastructure\HttpUtils\ProductsFilters;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +31,7 @@ class ProductsController extends AbstractController{
      */
     public function list(Request $request):JsonResponse{
         try{
-            $queryParams = HttpUtils::GetProductsParams($request);
+            $queryParams = ProductsFilters::GetProductsParams($request);
 
             $result = $this->productsImpl->GetProducts($queryParams);
 
@@ -41,7 +41,8 @@ class ProductsController extends AbstractController{
             return $response;
         }catch(Exception $error){
             $this->logger->error(json_encode($error));
-            return json_encode($error);
+            $response = new JsonResponse();
+            return $response->setData($error);
         }        
     }
 

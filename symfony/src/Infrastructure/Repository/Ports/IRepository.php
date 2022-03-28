@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Repository\Ports;
 
 use App\Domain\Dto\QueryParams;
-use \Models\Product;
+use App\Domain\Models\Product;
 
 interface IRepository {
     /**

@@ -6,6 +6,6 @@ import (
 )
 
 type IRepository interface {
-	Init(string) error
+	Init(string, string) error
 	GetProducts(dto.QueryParams) (*[]models.Product, error)
 }

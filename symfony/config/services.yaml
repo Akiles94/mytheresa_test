@@ -26,13 +26,13 @@ services:
 
     App\Domain\Ports\IProducts: '@App\Domain\Adapters\ProductsImpl'
 
-    App\Controller\:
+    App\Infrastructure\Http\:
         resource: '../src/Infrastructure/Http/'
         tags: ['controller.service_arguments']
 
     App\Infrastructure\Repository\Adapters\FileStoreRepo:
         arguments:
-            $filePath: '\assets\products.json'            
+            $filePath: '/assets/products.json'            
 
     App\Infrastructure\Repository\Ports\IRepository: '@App\Infrastructure\Repository\Adapters\FileStoreRepo'    
 

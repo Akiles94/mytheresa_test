@@ -19,7 +19,7 @@ func TestGetProducts(t *testing.T) {
 	//Normally for the repo we could have mocked data repo, but for this case
 	//is not necessary becouse we are not doing a DB connection.
 	repo := &datasetimpl.DatasetRepo{}
-	repo.Init("./products.json")
+	repo.Init("./products.json", "dev")
 
 	productsImpl := adapters.ProductsImpl{
 		Repo: repo,

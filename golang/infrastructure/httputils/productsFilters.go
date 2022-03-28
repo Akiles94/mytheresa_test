@@ -11,7 +11,9 @@ import (
 
 func GetProductsFiltered(data []models.Product, filters dto.QueryParams) []models.Product {
 	response := []models.Product{}
+	count := 0
 	for _, item := range data {
+		count++
 		catFlag := false
 		priceFlag := false
 		if filters.Category != nil {
@@ -28,7 +30,7 @@ func GetProductsFiltered(data []models.Product, filters dto.QueryParams) []model
 		} else {
 			priceFlag = true
 		}
-		if catFlag && priceFlag {
+		if catFlag && priceFlag && count <= filters.Limit && count > filters.Offset {
 			response = append(response, item)
 		}
 	}
@@ -48,12 +50,24 @@ func GetProductsParams(c *gin.Context) (*dto.QueryParams, error) {
 		log.Error("Error converting from string to int for offset")
 		return nil, err
 	}
+	limit, err := strconv.Atoi(c.DefaultQuery("limit", "20"))
+	if err != nil {
+		log.Error("Error converting from string to int for offset")
+		return nil, err
+	}
+	offset, err := strconv.Atoi(c.DefaultQuery("offset", "0"))
+	if err != nil {
+		log.Error("Error converting from string to int for offset")
+		return nil, err
+	}
 	if tmpPricesLessThan != 0 {
 		priceLessThan = &tmpPricesLessThan
 	}
 	result = dto.QueryParams{
 		Category:      category,
 		PriceLessThan: priceLessThan,
+		Limit:         limit,
+		Offset:        offset,
 	}
 
 	return &result, nil

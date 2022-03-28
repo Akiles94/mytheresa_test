@@ -1,19 +1,18 @@
 <?php
 
-namespace App\Domain\Models;
+namespace App\Domain\Dto;
 
-class Product{
-    
+class ProductResp {
     public string $sku;
     public string $name;
     public string $category;
-    public float $price;
+    public PriceResp $price;
 
     public function __construct(
         string $sku,
         string $name,
         string $category,
-        float $price
+        PriceResp $price
     )
     {
         $this->sku = $sku;
@@ -21,5 +20,4 @@ class Product{
         $this->category = $category;
         $this->price = $price;
     }
-
 }

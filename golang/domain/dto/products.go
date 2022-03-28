@@ -3,6 +3,8 @@ package dto
 type QueryParams struct {
 	Category      *string
 	PriceLessThan *int
+	Limit         int
+	Offset        int
 }
 
 type PriceResp struct {

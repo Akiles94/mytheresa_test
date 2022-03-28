@@ -11,7 +11,7 @@ class ProductsTest extends KernelTestCase{
         self::bootKernel();        
         $container = static::getContainer();
         $productsImpl = $container->get(ProductsImpl::class);
-        $params = new QueryParams(null, null);
+        $params = new QueryParams(null, null,20,0);
         $products = $productsImpl->GetProducts($params);
         foreach($products as $product){
             //useCase 1: boots category have a 30% discount

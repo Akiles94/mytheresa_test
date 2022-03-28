@@ -9,6 +9,7 @@ import (
 
 type Config struct {
 	Port int
+	Env  string
 }
 
 func (config *Config) loadEnv() *Config {

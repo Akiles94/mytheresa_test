@@ -11,5 +11,5 @@ RUN cp /usr/share/zoneinfo/America/Guayaquil /etc/localtime
 RUN echo "America/Guayaquil" > /etc/timezone
 RUN date
 COPY --from=build /go/bin/products /go/bin/products
-COPY --from=build /go/src/github.com/Akiles94/mytheresa-test/infrastructure/assets/ /go/src/assets/
+COPY --from=build /go/src/github.com/Akiles94/mytheresa-test/infrastructure/assets/ /go/src/infrastructure/assets
 ENTRYPOINT [ "go/bin/products" ]
